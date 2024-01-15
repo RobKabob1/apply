@@ -4,15 +4,14 @@ Apply is a sample app that traverses LinkedIn and automates applications to job 
 # Map of the app
 
 ### main
-- [X] accept input parameters and validate (param_validation.dart)
+- [X] accept input parameters (param_validation.dart)
 - [ ] connect to database (database_setup_file.dart)
 - [ ] login get past security checks (login_security_checks.dart)
 - [ ] apply (apply_to.dart)
 
 ### param_validation.dart
-- [ ] get browser settings from yaml file
-- [ ] validate these settings to make sure someone didn't type anything incorrectly
-- [ ] return back to main
+- [X] get browser settings from yaml file
+- [X] validate these settings to make sure someone didn't type anything incorrectly
 
 ### database_setup_file.dart
 - [ ] get parameters from main (pass yaml validated results)
