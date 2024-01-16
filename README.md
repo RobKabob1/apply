@@ -20,8 +20,8 @@ Apply is a sample app that traverses LinkedIn and automates applications to job 
 - [X] return back to main
 
 ### login_security_checks.dart
-- [ ] get parameters from main (pass yaml validated results)
-- [ ] login to site
+- [X] get parameters from main (pass yaml validated results)
+- [X] login to site
 - [ ] if there's a security check, have the user resolve
 - [ ] return back to main
 
