@@ -5,7 +5,7 @@ Apply is a sample app that traverses LinkedIn and automates applications to job 
 
 ### main
 - [X] accept input parameters (param_validation.dart)
-- [ ] connect to database (database_setup_file.dart)
+- [X] connect to database (database_setup_file.dart)
 - [ ] login get past security checks (login_security_checks.dart)
 - [ ] apply (apply_to.dart)
 
@@ -16,8 +16,8 @@ Apply is a sample app that traverses LinkedIn and automates applications to job 
 ### database_setup_file.dart
 - [X] get parameters from main (pass yaml validated results)
 - [X] connect to database
-- [ ] find if table already exists for user's email. If it doesnt, make it
-- [ ] return back to main
+- [X] find if table already exists for user's email. If it doesnt, make it
+- [X] return back to main
 
 ### login_security_checks.dart
 - [ ] get parameters from main (pass yaml validated results)

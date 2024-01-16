@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:supabase/supabase.dart';
 
 class DatabaseSetup {
@@ -5,10 +7,22 @@ class DatabaseSetup {
     //initialize Supabase
     String res = "";
     try {
-      //see if there is a table named your email
+      //create a user in users table if it doesn't already exist
       final supabase = SupabaseClient(client, key);
-      final data = await supabase.from('information_schema.tables').select('*');
-      print(data);
+      final data = await supabase.from('users').select('id').eq('email', email);
+
+      if (data.isEmpty) {
+        try {
+          await supabase.from('users').insert([
+            {'email': 'test'}
+          ]);
+          stdout.writeln("Created $email user");
+        } catch (e) {
+          res = e.toString();
+        }
+      } else {
+        stdout.writeln("User $email exists");
+      }
     } catch (e) {
       res = e.toString();
     }
