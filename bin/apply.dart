@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:apply/application.dart';
+import 'package:apply/login_security_checks.dart';
 import 'package:apply/database_setup.dart';
 import 'package:apply/param_validation.dart';
 import 'package:puppeteer/puppeteer.dart';

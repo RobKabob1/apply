@@ -30,4 +30,3 @@ Apply is a sample app that traverses LinkedIn and automates applications to job 
 - [ ] apply to jobs 
 - [ ] goes through application process by answering questions
 - [ ] writes results to database
-
