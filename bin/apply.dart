@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import 'package:apply/database_setup.dart';
 import 'package:apply/param_validation.dart';
 
-void main(List<String> arguments) {
+Future<void> main(List<String> arguments) async {
   //get the parameters for the script from the parameters.yaml file
   Map<dynamic, dynamic> yamlResults =
       ParamValidation().yamlDetails('parameters.yaml');
@@ -17,4 +18,23 @@ void main(List<String> arguments) {
     }
     exit(2);
   }
+
+  //call the database
+  await DatabaseSetup()
+      .initializeData(
+    yamlResults['supabaseURL'],
+    yamlResults['supabaseKey'],
+    yamlResults['email'],
+  )
+      .then(
+    (value) {
+      if (value != "") {
+        stderr.writeln('Database Error: $value');
+        exit(2);
+      }
+    },
+  );
+
+  //end the program
+  exit(0);
 }
