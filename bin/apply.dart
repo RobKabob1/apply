@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:apply/application.dart';
 import 'package:apply/database_setup.dart';
 import 'package:apply/param_validation.dart';
 
@@ -30,6 +31,21 @@ Future<void> main(List<String> arguments) async {
     (value) {
       if (value != "") {
         stderr.writeln('Database Error: $value');
+        exit(2);
+      }
+    },
+  );
+
+  //open Chrome
+  await Application()
+      .login(
+    yamlResults['email'],
+    yamlResults['password'],
+  )
+      .then(
+    (value) {
+      if (value != "") {
+        stderr.writeln('Chrome Error: $value');
         exit(2);
       }
     },
