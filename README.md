@@ -6,7 +6,7 @@ Apply is a sample app that traverses LinkedIn and automates applications to job 
 ### main
 - [X] accept input parameters (param_validation.dart)
 - [X] connect to database (database_setup_file.dart)
-- [ ] login get past security checks (login_security_checks.dart)
+- [X] login get past security checks (login_security_checks.dart)
 - [ ] apply (apply_to.dart)
 
 ### param_validation.dart
@@ -22,8 +22,8 @@ Apply is a sample app that traverses LinkedIn and automates applications to job 
 ### login_security_checks.dart
 - [X] get parameters from main (pass yaml validated results)
 - [X] login to site
-- [ ] if there's a security check, have the user resolve
-- [ ] return back to main
+- [X] if there's a security check, have the user resolve
+- [X] return back to main
 
 ### apply_to.dart
 - [ ] starts searching for jobs and increments sleep timer

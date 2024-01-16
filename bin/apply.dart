@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:apply/application.dart';
 import 'package:apply/database_setup.dart';
 import 'package:apply/param_validation.dart';
+import 'package:puppeteer/puppeteer.dart';
 
 Future<void> main(List<String> arguments) async {
   //get the parameters for the script from the parameters.yaml file
@@ -36,9 +37,23 @@ Future<void> main(List<String> arguments) async {
     },
   );
 
-  //open Chrome
+  //launch web browser
+  Browser browser;
+  try {
+    browser = await puppeteer.launch(
+      headless: false,
+      noSandboxFlag: true,
+      executablePath: '/usr/bin/google-chrome-stable',
+    );
+  } catch (e) {
+    stderr.writeln('Browser Error: ${e.toString}');
+    exit(2);
+  }
+
+  //go to webpage
   await Application()
       .login(
+    browser,
     yamlResults['email'],
     yamlResults['password'],
   )
