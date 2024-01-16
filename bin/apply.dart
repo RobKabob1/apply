@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:apply/apply_to.dart';
 import 'package:apply/login_security_checks.dart';
 import 'package:apply/database_setup.dart';
 import 'package:apply/param_validation.dart';
@@ -22,19 +23,12 @@ Future<void> main(List<String> arguments) async {
   }
 
   //call the database
-  await DatabaseSetup()
-      .initializeData(
+  var clientInformation = await DatabaseSetup().initializeData(
     yamlResults['supabaseURL'],
     yamlResults['supabaseKey'],
     yamlResults['email'],
-  )
-      .then(
-    (value) {
-      if (value != "") {
-        stderr.writeln('Database Error: $value');
-        exit(2);
-      }
-    },
+    yamlResults['jobTitles'],
+    yamlResults['jobLocations'],
   );
 
   //launch web browser
@@ -51,7 +45,7 @@ Future<void> main(List<String> arguments) async {
   }
 
   //go to webpage
-  await Application()
+  await LoginSecurityChecks()
       .login(
     browser,
     yamlResults['email'],
@@ -65,6 +59,9 @@ Future<void> main(List<String> arguments) async {
       }
     },
   );
+
+  //begin applying to jobs
+  ApplyTo().applytothings(clientInformation);
 
   //end the program
   exit(0);

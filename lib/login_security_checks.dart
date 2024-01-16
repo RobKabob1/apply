@@ -3,13 +3,14 @@ import 'dart:math';
 
 import 'package:puppeteer/puppeteer.dart';
 
-class Application {
+class LoginSecurityChecks {
   //function to login to site
   Future<String> login(
     Browser browser,
     email,
     password,
   ) async {
+    stdout.writeln("-------Starting Login Security Checks-------");
     String res = "";
 
     try {

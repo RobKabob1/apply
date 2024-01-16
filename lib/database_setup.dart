@@ -2,29 +2,39 @@ import 'dart:io';
 import 'package:supabase/supabase.dart';
 
 class DatabaseSetup {
-  Future<String> initializeData(client, key, email) async {
+  Future<Map<String, dynamic>> initializeData(
+      client, key, email, jobTitles, jobLocations) async {
+    stdout.writeln("-------Starting Database Checks-------");
+
     //initialize Supabase
-    String res = "";
     try {
       //create a user in users table if it doesn't already exist
       final supabase = SupabaseClient(client, key);
-      final data = await supabase.from('users').select('id').eq('email', email);
+      final data = await supabase.from('users').select().eq('email', email);
 
       if (data.isEmpty) {
         try {
           await supabase.from('users').insert([
-            {'email': 'test'}
+            {
+              'email': email,
+              'jobTitles': jobTitles,
+              'jobLocations': jobLocations,
+            }
           ]);
+          //get job titles and locations for new user
           stdout.writeln("Created $email user");
+          return data.first;
         } catch (e) {
-          res = e.toString();
+          stderr.writeln('Database Error: ${e.toString()}');
+          exit(2);
         }
       } else {
         stdout.writeln("User $email exists");
+        return data.first;
       }
     } catch (e) {
-      res = e.toString();
+      stderr.writeln('Database Error: ${e.toString()}');
+      exit(2);
     }
-    return res;
   }
 }

@@ -4,6 +4,7 @@ import 'package:yaml/yaml.dart';
 class ParamValidation {
   //get all of the information from the parameters.yaml file to be used in the program
   Map<dynamic, dynamic> yamlDetails(yamlFile) {
+    stdout.writeln("-------Starting Parameter Checks-------");
     File file = File(yamlFile);
     String yamlString = file.readAsStringSync();
     Map yaml = loadYaml(yamlString);
