@@ -5,7 +5,11 @@ import 'package:puppeteer/puppeteer.dart';
 
 class Application {
   //function to login to site
-  Future<String> login(Browser browser, email, password) async {
+  Future<String> login(
+    Browser browser,
+    email,
+    password,
+  ) async {
     String res = "";
 
     try {
